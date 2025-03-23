@@ -1,4 +1,4 @@
-## Panasonic P2
+## Panasonic P2 - Multi Cam
 
 Companion Module to control Panasonic Cameras supporting the P2 Protocol. Tested with the AG-CX350 and HC-X2, but according to Panasonics Documentation, which can be found [here](https://eww.pass.panasonic.co.jp/pro-av/support/content/guide/EN/top.html#P2), this should work with the following devices:
 - HPX3100 / HPX600 / HPX5000
@@ -12,5 +12,5 @@ Companion Module to control Panasonic Cameras supporting the P2 Protocol. Tested
 ### Camera Configuration
 
 To connect to a Camera, it must be on the same network as companion and "IP Remote" has to be enabled.
-Due to the way the P2 Protocol works, every camera must have a different Port to work with this Companion module.
-Testing from new fork to see if changes come through
+
+### Default TCP Port: 49152
