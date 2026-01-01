@@ -18,8 +18,167 @@ export function updateActions(instance: ModuleInstance) {
                 const xml = event.options.xml?.toString();
                 if (!xml) return;
                 instance.p2Connection?.sendP2Control(xml);
-            },
+    },
+},
+
+        set_userFile: {
+    name: 'Load User File',
+    options: [
+        {
+            id: 'file',
+            type: 'dropdown',
+            label: 'User File',
+            choices: [
+                { id: '1', label: 'USER 1' },
+                { id: '2', label: 'USER 2' },
+                { id: '3', label: 'USER 3' },
+                { id: '4', label: 'USER 4' },
+                { id: '5', label: 'USER 5' },
+                { id: '6', label: 'USER 6' },
+            ],
+            default: '1',
         },
+    ],
+    callback: async (event) => {
+        const file = event.options.file?.toString()
+        if (!file) return
+
+        instance.p2Connection?.sendP2Control(`USERFILE:${file}`)
+    },
+},
+     
+       set_sceneFile: {
+    name: 'Load Scene File',
+    options: [
+        {
+            id: 'scene',
+            type: 'dropdown',
+            label: 'Scene File',
+            choices: [
+                { id: '1', label: 'Scene 1 (24p)' },
+                { id: '2', label: 'Scene 2 (60p)' },
+                { id: '3', label: 'Scene 3' },
+                { id: '4', label: 'Scene 4' },
+                { id: '5', label: 'Scene 5' },
+                { id: '6', label: 'Scene 6' },
+            ],
+            default: '1',
+        },
+    ],
+    callback: async (event) => {
+        const scene = event.options.scene?.toString()
+        if (!scene) return
+
+        instance.p2Connection?.sendP2Control(`SCENE:${scene}`)
+    },
+},
+
+        set_ndFilter: {
+    name: 'Set ND Filter',
+    options: [
+        {
+            id: 'nd',
+            type: 'dropdown',
+            label: 'ND Level',
+            choices: [
+                { id: '0', label: 'Clear' },
+                { id: '1', label: '1/4' },
+                { id: '2', label: '1/16' },
+                { id: '3', label: '1/64' },
+            ],
+            default: '0',
+        },
+    ],
+    callback: async (event) => {
+        const nd = event.options.nd?.toString()
+        if (!nd) return
+
+        instance.p2Connection?.sendP2Control(`ND:${nd}`)
+    },
+},
+
+        set_userSwitch: {
+    name: 'Set User Switch',
+    options: [
+        {
+            id: 'user',
+            type: 'dropdown',
+            label: 'User Switch',
+            choices: [
+                { id: '1', label: 'USER 1' },
+                { id: '2', label: 'USER 2' },
+                { id: '3', label: 'USER 3' },
+                { id: '4', label: 'USER 4' },
+                { id: '5', label: 'USER 5' },
+                { id: '6', label: 'USER 6' },
+            ],
+            default: '1',
+        },
+        {
+            id: 'state',
+            type: 'dropdown',
+            label: 'State',
+            choices: [
+                { id: 'ON', label: 'On' },
+                { id: 'OFF', label: 'Off' },
+            ],
+            default: 'ON',
+        },
+    ],
+    callback: async (event) => {
+        const user = event.options.user?.toString()
+        const state = event.options.state?.toString()
+        if (!user || !state) return
+
+        instance.p2Connection?.sendP2Control(`USER:${user}:${state}`)
+    },
+},
+
+        set_vfrState: {
+    name: 'Set VFR State',
+    options: [
+        {
+            id: 'state',
+            type: 'dropdown',
+            label: 'VFR',
+            choices: [
+                { id: 'ON', label: 'On' },
+                { id: 'OFF', label: 'Off' },
+            ],
+            default: 'ON',
+        },
+    ],
+    callback: async (event) => {
+        const state = event.options.state?.toString()
+        if (!state) return
+
+        instance.p2Connection?.sendP2Control(`VFR:${state}`)
+    },
+},
+
+        set_vfrFps: {
+    name: 'Set VFR Frame Rate',
+    options: [
+        {
+            id: 'fps',
+            type: 'dropdown',
+            label: 'FPS',
+            choices: [
+                { id: '24', label: '24 fps' },
+                { id: '30', label: '30 fps' },
+                { id: '48', label: '48 fps' },
+                { id: '60', label: '60 fps' },
+            ],
+            default: '24',
+        },
+    ],
+    callback: async (event) => {
+        const fps = event.options.fps?.toString()
+        if (!fps) return
+
+        instance.p2Connection?.sendP2Control(`VFRFPS:${fps}`)
+    },
+},
 
         set_tally: {
             name: 'Set Tally',
